@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <title>Catalogue Big2Big</title>
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="/style.css" />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 
@@ -262,7 +262,27 @@ nav.nav { position: relative; z-index: 10000; }
     background: rgba(4,8,32,.98);
   }
 }
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
+.footer__credit {
+  flex: 1;
+  text-align: center;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-family: inherit !important;
+}
+
+.footer__legal {
+  display: flex;
+  gap: 20px;
+}
 
 /* ══ MOBILE ══ */
 @media(max-width:700px){
@@ -295,12 +315,12 @@ nav.nav { position: relative; z-index: 10000; }
 <nav class="nav">
   <div class="container">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo">
+      <a href="accueil.html" class="nav__logo">
         <img src="https://big2big.fr/wp-content/uploads/2026/05/cropped-image-removebg-preview.png" alt="Big2Big Logo" onerror="this.style.display='none'">
         <span class="nav__logo-text">BIG<span>2</span>BIG</span>
       </a>
       <div class="nav__links">
-        <a href="index.html">Accueil</a>
+        <a href="accueil.html">Accueil</a>
         <a href="catalogue.html" class="active">Catalogue</a>
         <a href="apropos.html">À Propos</a>
         <a href="contact.html">Contact</a>
@@ -315,7 +335,7 @@ nav.nav { position: relative; z-index: 10000; }
     </div>
   </div>
   <div class="nav__mobile" id="mobileMenu">
-    <a href="index.html">Accueil</a>
+    <a href="accueil.html">Accueil</a>
     <a href="catalogue.html">Catalogue</a>
     <a href="apropos.html">À Propos</a>
     <a href="contact.html">Contact</a>
@@ -338,7 +358,7 @@ nav.nav { position: relative; z-index: 10000; }
 
   <!-- Sur mobile : les 2 boutons d'action juste sous le livre -->
   <div id="dps-actions-mobile">
-    <a class="bottom-dl-btn" href="/Votre_partenaire_pour_des_produits_de_qualité__2_.pdf" download>
+    <a class="bottom-dl-btn" href="Votre_partenaire_pour_des_produits_de_qualité__2__pdf.pdf" download>
       <svg viewBox="0 0 24 24"><path d="M12 3v12"/><polyline points="7 11 12 16 17 11"/><path d="M5 21h14"/></svg>
       Télécharger PDF
     </a>
@@ -349,7 +369,7 @@ nav.nav { position: relative; z-index: 10000; }
   </div>
 
   <div id="dps-bot">
-    <a class="bottom-dl-btn" href="/Votre_partenaire_pour_des_produits_de_qualité__2__pdf.pdf" download>
+    <a class="bottom-dl-btn" href="Votre_partenaire_pour_des_produits_de_qualité__2__pdf.pdf" download>
       <svg viewBox="0 0 24 24"><path d="M12 3v12"/><polyline points="7 11 12 16 17 11"/><path d="M5 21h14"/></svg>
       Télécharger PDF
     </a>
@@ -469,7 +489,7 @@ nav.nav { position: relative; z-index: 10000; }
       </div>
       <div>
         <h4>Navigation</h4>
-        <a href="index.html">Accueil</a>
+        <a href="accueil.html">Accueil</a>
         <a href="catalogue.html">Catalogue 2026</a>
         <a href="apropos.html">À Propos</a>
         <a href="contact.html">Contact</a>
@@ -500,13 +520,14 @@ nav.nav { position: relative; z-index: 10000; }
       </div>
     </div>
     <div class="footer__bottom">
-      <span class="footer__copy">© 2026 Big2Big — Tous droits réservés</span>
-      <div class="footer__legal">
-        <a href="#">Mentions légales</a>
-        <a href="#">Confidentialité</a>
-        <a href="#">CGV</a>
-      </div>
-    </div>
+  <span class="footer__copy">© 2026 Big2Big — Tous droits réservés</span>
+  <span class="footer__credit">Site fait par <a href="https://iyadhadjour.fr" target="_blank" rel="noopener" style="color:rgba(255,204,0,0.45);text-decoration:none;">iyadhadjour.fr</a></span>
+  <div class="footer__legal">
+    <a href="mentions légales/Mentions légales.html">Mentions légales</a>
+    <a href="confidentialité/Confidentialité.html">Confidentialité</a>
+    <a href="cgv/cgv.html">CGV</a>
+  </div>
+</div>
   </div>
 </footer>
 
@@ -831,6 +852,6 @@ function go(){
 document.readyState==='loading'?document.addEventListener('DOMContentLoaded',go):go();
 })();
 </script>
-<script src="script.js"></script>
+<script src="/script.js"></script>
 </body>
 </html>

@@ -80,7 +80,7 @@
       border-radius: 2px;
       margin: 0 auto 20px;
     }
-
+   
     .partner-name {
       font-size: 20px;
       font-weight: 700;
@@ -100,24 +100,50 @@
       border-radius: 100px;
       margin-bottom: 16px;
     }
-    .partner-desc {
-      font-size: 13.5px;
-      color: #888;
-      line-height: 1.7;
-      margin: 0;
-    }
+
+   
+   
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer__credit {
+  flex: 1;
+  text-align: center;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-family: inherit !important;
+}
+
+.footer__legal {
+  display: flex;
+  gap: 20px;
+}
+
+.partner-desc {
+  font-size: 13.5px;
+  color: #888;
+  line-height: 1.7;
+  margin: 0;
+  }
   </style>
+
 </head>
 <body>
   <nav class="nav">
     <div class="container">
       <div class="nav__inner">
-        <a href="index.html" class="nav__logo">
+        <a href="accueil.html" class="nav__logo">
           <img src="/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big Logo" onerror="this.style.display='none'">
           <span class="nav__logo-text">BIG<span>2</span>BIG</span>
         </a>
         <div class="nav__links">
-          <a href="index.html">Accueil</a>
+          <a href="accueil.html">Accueil</a>
           <a href="catalogue.html">Catalogue</a>
           <a href="apropos.html" class="active">À Propos</a>
           <a href="contact.html">Contact</a>
@@ -132,7 +158,7 @@
       </div>
     </div>
     <div class="nav__mobile" id="mobileMenu">
-      <a href="index.html">Accueil</a>
+      <a href="accueil.html">Accueil</a>
       <a href="catalogue.html">Catalogue</a>
       <a href="apropos.html">À Propos</a>
       <a href="contact.html">Contact</a>
@@ -320,7 +346,7 @@
           <span class="eyebrow">Confiance & Conformité</span>
           <h2 class="display" style="color:var(--white);">Nos<br><span style="color:var(--yellow);">Certifications</span></h2>
           <p style="font-size:1.05rem;margin:24px 0 36px;">La conformité alimentaire est au cœur de notre activité. Nos produits sont certifiés et notre traçabilité est vérifiable de la source jusqu'à votre point de vente.</p>
-          <a href="contact.html" class="btn btn--primary">Nous contacter →</a>
+          <a href="/contact.html" class="btn btn--primary">Nous contacter →</a>
         </div>
         <div>
           <div class="certif-bar" style="flex-direction:column;">
@@ -368,7 +394,7 @@
       <div class="footer__grid">
         <div>
           <div class="footer__logo">
-            <img src="/catalogue BIG2BIG/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big" onerror="this.style.display='none'">
+            <img src="catalogue BIG2BIG/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big" onerror="this.style.display='none'">
             <span class="footer__brand">BIG<span>2</span>BIG</span>
           </div>
           <p class="footer__desc">Le partenaire stratégique des grossistes et des professionnels de la restauration. +2 500 références, livraison 72h France entière.</p>
@@ -380,7 +406,7 @@
         </div>
         <div>
           <h4>Navigation</h4>
-          <a href="index.html">Accueil</a>
+          <a href="accueil.html">Accueil</a>
           <a href="catalogue.html">Catalogue 2026</a>
           <a href="apropos.html">À Propos</a>
           <a href="contact.html">Contact</a>
@@ -411,13 +437,14 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <span class="footer__copy">© 2026 Big2Big — Tous droits réservés</span>
-        <div class="footer__legal">
-          <a href="#">Mentions légales</a>
-          <a href="#">Confidentialité</a>
-          <a href="#">CGV</a>
-        </div>
-      </div>
+  <span class="footer__copy">© 2026 Big2Big — Tous droits réservés</span>
+  <span class="footer__credit">Site fait par <a href="https://iyadhadjour.fr" target="_blank" rel="noopener" style="color:rgba(255,204,0,0.45);text-decoration:none;">iyadhadjour.fr</a></span>
+  <div class="footer__legal">
+    <a href="mentions légales/Mentions légales.html">Mentions légales</a>
+    <a href="confidentialité/Confidentialité.html">Confidentialité</a>
+    <a href="cgv/cgv.html">CGV</a>
+  </div>
+</div>
     </div>
   </footer>
 

@@ -250,7 +250,28 @@
       color: rgba(255,255,255,0.55);
       text-transform: uppercase;
     }
+   
+    .footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
+.footer__credit {
+  flex: 1;
+  text-align: center;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-family: inherit !important;
+}
+
+.footer__legal {
+  display: flex;
+  gap: 20px;
+}
     /* Tablet and up: two-column split, image on the right */
     @media (min-width: 760px) {
       .hero__inner.hero__inner--split {
@@ -317,12 +338,12 @@
 <nav class="nav">
   <div class="container">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo">
-        <img src="/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big Logo" onerror="this.style.display='none'">
+      <a href="accueil.html" class="nav__logo">
+        <img src="img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big Logo" onerror="this.style.display='none'">
         <span class="nav__logo-text">BIG<span>2</span>BIG</span>
       </a>
       <div class="nav__links">
-        <a href="index.html" class="active">Accueil</a>
+        <a href="accueil.html" class="active">Accueil</a>
         <a href="catalogue.html">Catalogue</a>
         <a href="apropos.html">À Propos</a>
         <a href="contact.html">Contact</a>
@@ -337,7 +358,7 @@
     </div>
   </div>
   <div class="nav__mobile" id="mobileMenu">
-    <a href="index.html">Accueil</a>
+    <a href="accueil.html">Accueil</a>
     <a href="catalogue.html">Catalogue</a>
     <a href="apropos.html">À Propos</a>
     <a href="contact.html">Contact</a>
@@ -379,17 +400,6 @@
       <div class="hero__image-frame">
         <div class="hero__image-wrap">
           <img src="/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Entrepôt Big2Big — produits alimentaires professionnels" />
-          <span class="hero__image-tag">📦 +2 500 réf.</span>
-          <div class="hero__image-badge">
-            <div>
-              <strong>72H</strong>
-              <span>Livraison France entière</span>
-            </div>
-            <div style="text-align:right;">
-              <strong>12</strong>
-              <span>Univers produits</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -721,7 +731,7 @@
       </div>
       <div>
         <h4>Navigation</h4>
-        <a href="index.html">Accueil</a>
+        <a href="accueil.html">Accueil</a>
         <a href="catalogue.html">Catalogue 2026</a>
         <a href="apropos.html">À Propos</a>
         <a href="contact.html">Contact</a>
@@ -752,16 +762,18 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span class="footer__copy">© 2026 Big2Big — Tous droits réservés</span>
-      <div class="footer__legal">
-        <a href="#">Mentions légales</a>
-        <a href="#">Confidentialité</a>
-        <a href="#">CGV</a>
-      </div>
-    </div>
+  <span class="footer__copy">© 2026 Big2Big — Tous droits réservés</span>
+  <span class="footer__credit">Site fait par <a href="https://iyadhadjour.fr" target="_blank" rel="noopener" style="color:rgba(255,204,0,0.45);text-decoration:none;">iyadhadjour.fr</a></span>
+  <div class="footer__legal">
+    <a href="Mentions légales.html">Mentions légales</a>
+    <a href="Confidentialité.html">Confidentialité</a>
+    <a href="cgv.html">CGV</a>
+  </div>
+  
+</div>
   </div>
 </footer>
-
+  <script src="script.js"></script>
 <script>
   const burger = document.getElementById('burger');
   const menu = document.getElementById('mobileMenu');
