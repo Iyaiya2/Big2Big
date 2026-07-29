@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Big2Big — Grossiste Alimentaire Professionnel</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== HERO — punchy, premium redesign, mobile-first ===== */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(40px, 8vw, 96px) 0 0;
+      box-sizing: border-box;
+      isolation: isolate;
+    }
+    .hero .container { width: 100%; max-width: 1280px; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+
+    /* Background image layer — low opacity, premium feel */
+    .hero__bg-image {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero__bg-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+      opacity: 0.55;
+      filter: grayscale(15%);
+    }
+    .hero__bg-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11,18,38,0.3) 0%, rgba(11,18,38,0.9) 100%);
+    }
+
+    /* Depth: layered glows behind everything */
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: 50%;
+    }
+    .hero::before {
+      width: 620px; height: 620px;
+      background: radial-gradient(circle, rgba(255,193,7,0.16) 0%, rgba(255,193,7,0) 70%);
+      top: -220px; right: -160px;
+    }
+    .hero::after {
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+      bottom: -260px; left: -180px;
+    }
+
+    .hero__inner.hero__inner--split {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "kicker"
+        "heading"
+        "text"
+        "pills"
+        "actions"
+        "image";
+      align-items: start;
+      gap: clamp(20px, 4.5vw, 28px);
+      width: 100%;
+      padding-bottom: clamp(40px, 7vw, 64px);
+    }
+
+    /* Kicker pill */
+    .hero__eyebrow {
+      grid-area: kicker;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 8px 16px 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,193,7,0.1);
+      border: 1px solid rgba(255,193,7,0.35);
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+    }
+    .hero__eyebrow::before {
+      content: "";
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--yellow, #FFC107);
+      box-shadow: 0 0 0 3px rgba(255,193,7,0.25);
+      flex-shrink: 0;
+    }
+
+    .hero__heading {
+      grid-area: heading;
+      margin: 0;
+      font-size: clamp(2.4rem, 8vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      max-width: 100%;
+    }
+
+    .hero__text {
+      grid-area: text;
+      max-width: 480px;
+      margin: 0;
+      font-size: clamp(0.98rem, 2vw, 1.08rem);
+      line-height: 1.6;
+      color: rgba(255,255,255,0.72);
+    }
+
+    /* Trust pills */
+    .hero__pills {
+      grid-area: pills;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .hero__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--white, #fff);
+      white-space: nowrap;
+    }
+    .hero__pill span:first-child { font-size: 1rem; line-height: 1; }
+
+    .hero__actions { grid-area: actions; display: flex; flex-wrap: wrap; gap: 14px; margin: 4px 0 0; }
+    .hero__actions .btn--primary {
+      box-shadow: 0 12px 28px -8px rgba(255,193,7,0.5);
+    }
+
+    /* Image column — clean square, integrated into the hero, not a floating card */
+    .hero__col-image { grid-area: image; position: relative; width: 100%; display: flex; justify-content: center; }
+    .hero__image-frame {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .hero__image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  overflow: visible;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+.hero__image-wrap img {
+  width: 100%; height: 100%;
+  object-fit: contain; object-position: center;
+  display: block;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.35));
+  opacity: 0.80;
+
+}
+    .hero__image-tag {
+      position: absolute;
+      top: 30px; left: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.95);
+      color: #0b1226;
+      border-radius: 999px;
+      padding: 7px 12px 7px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      box-shadow: 0 8px 20px -6px rgba(0,0,0,0.4);
+    }
+    .hero__image-badge {
+      position: absolute;
+      left: 10px; right: 10px; bottom: -6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: rgba(8, 12, 26, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: var(--white, #fff);
+    }
+    .hero__image-badge > div { min-width: 0; }
+    .hero__image-badge > div:last-child { text-align: right; }
+    .hero__image-badge strong {
+      display: block;
+      font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+      color: var(--yellow, #FFC107);
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+    .hero__image-badge span {
+      display: block;
+      font-size: clamp(0.62rem, 1.6vw, 0.7rem);
+      opacity: 0.85;
+      margin-top: 3px;
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    /* Full-width stat bar under the whole hero */
+    .hero__statbar {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: clamp(20px, 4vw, 28px) 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 20px;
+    }
+    .hero__statbar > div {
+      position: relative;
+      padding: 0 16px;
+      text-align: left;
+    }
+    .hero__statbar > div:not(:nth-child(2n))::after {
+      content: none;
+    }
+    .hero__kpi-value {
+      font-size: clamp(1.5rem, 3.2vw, 1.9rem);
+      font-weight: 800;
+      color: var(--yellow, #FFC107);
+      line-height: 1.1;
+    }
+    .hero__kpi-label {
+      margin-top: 4px;
+      font-size: 0.74rem;
+      letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+    }
+
+    /* Tablet and up: two-column split, image on the right */
+    @media (min-width: 760px) {
+      .hero__inner.hero__inner--split {
+        grid-template-columns: 1.05fr 0.95fr;
+        grid-template-areas:
+          "kicker  image"
+          "heading image"
+          "text    image"
+          "pills   image"
+          "actions image";
+        align-items: center;
+      }
+      .hero__heading { max-width: 620px; }
+      .hero__col-image { justify-content: flex-end; align-self: center; }
+      .hero__image-frame { max-width: 520px; margin: 0 0 0 auto; }
+      .hero__statbar {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        row-gap: 0;
+      }
+      .hero__statbar > div:not(:last-child) {
+        border-right: 1px solid rgba(255,255,255,0.1);
+      }
+    }
+
+    /* Small phones: tighten badge edges */
+    @media (max-width: 380px) {
+      .hero__image-badge { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .hero__image-badge > div:last-child { text-align: left; }
+    }
+
+    /* Cache l'image de droite du hero sur mobile uniquement — trop grande en dessous de 760px */
+    @media (max-width: 759px) {
+      .hero__col-image { display: none; }
+    }
+
+    /* ===== GLOBAL RESPONSIVE FIXES ===== */
+    .section { padding-top: clamp(48px, 8vw, 96px); padding-bottom: clamp(48px, 8vw, 96px); }
+    .container { box-sizing: border-box; }
+
+    /* "Pourquoi Big2Big" cards — 1 col mobile, 2 col tablet, 4 col desktop */
+    .grid-4 {
+      display: grid !important;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .grid-4 .card { min-width: 0; }
+    @media (min-width: 560px) { .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 960px) { .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+    /* 12 univers cards — responsive grid instead of fixed 4 columns */
+    .universes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    @media (min-width: 640px) { .universes-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; } }
+    @media (min-width: 960px) { .universes-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } }
+
+    /* 2-col image / text sections stack cleanly on mobile */
+    @media (max-width: 760px) {
+      .grid-2 { grid-template-columns: 1fr !important; gap: 24px !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="/catalogue BIG2BIG/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big Logo" onerror="this.style.display='none'">
+        <span class="nav__logo-text">BIG<span>2</span>BIG</span>
+      </a>
+      <div class="nav__links">
+        <a href="index.html" class="active">Accueil</a>
+        <a href="catalogue.html">Catalogue</a>
+        <a href="apropos.html">À Propos</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav__actions">
+        <a href="catalogue.html" class="btn btn--outline" style="padding:10px 18px;font-size:0.85rem;">Catalogue</a>
+        <a href="contact.html" class="btn btn--primary" style="padding:10px 18px;font-size:0.85rem;">Devis Rapide</a>
+      </div>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="index.html">Accueil</a>
+    <a href="catalogue.html">Catalogue</a>
+    <a href="apropos.html">À Propos</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn--primary">Devis Rapide →</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero__accent"></div>
+
+  <div class="hero__bg-image">
+    <img src="/catalogue BIG2BIG/img/fond.png" alt="" />
+  </div>
+
+  <div class="container hero__inner hero__inner--split">
+    <span class="hero__eyebrow" style="color:var(--yellow);">Grossiste Alimentaire — France Entière</span>
+
+    <h1 class="hero__heading display" style="color:var(--white);">
+      De Gros<br><span style="color:var(--yellow);">À Gros.</span>
+    </h1>
+
+    <p class="hero__text">Big2Big est le partenaire stratégique des grossistes et professionnels de la restauration. +2 500 références, livraison sous 72h partout en France.</p>
+
+    <div class="hero__pills">
+      <span class="hero__pill"><span>✅</span> Certifié Halal Achahada & Hal'Origin</span>
+      <span class="hero__pill"><span>🚚</span> Livraison 72h France entière</span>
+    </div>
+
+    <div class="hero__actions">
+      <a href="catalogue.html" class="btn btn--primary">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0l-7 7m7-7l-7-7"/></svg>
+        Voir le catalogue
+      </a>
+      <a href="contact.html" class="btn btn--outline-white">Demander un devis</a>
+    </div>
+
+    <div class="hero__col-image">
+      <div class="hero__image-frame">
+        <div class="hero__image-wrap">
+          <img src="/catalogue BIG2BIG/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Entrepôt Big2Big — produits alimentaires professionnels" />
+          <span class="hero__image-tag">📦 +2 500 réf.</span>
+          <div class="hero__image-badge">
+            <div>
+              <strong>72H</strong>
+              <span>Livraison France entière</span>
+            </div>
+            <div style="text-align:right;">
+              <strong>12</strong>
+              <span>Univers produits</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container hero__statbar">
+    <div>
+      <div class="hero__kpi-value">+2 500</div>
+      <div class="hero__kpi-label">Références</div>
+    </div>
+    <div>
+      <div class="hero__kpi-value">72H</div>
+      <div class="hero__kpi-label">Livraison max</div>
+    </div>
+    <div>
+      <div class="hero__kpi-value">12</div>
+      <div class="hero__kpi-label">Univers produits</div>
+    </div>
+    <div>
+      <div class="hero__kpi-value">100%</div>
+      <div class="hero__kpi-label">Dédié aux pros</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TICKER STRIP ===== -->
+<div class="strip">
+  <div class="strip__track">
+    <span class="strip__item"><span>✅</span> Stocks permanents garantis</span>
+    <span class="strip__dot"></span>
+    <span class="strip__item"><span>🚚</span> Livraison 72h France entière</span>
+    <span class="strip__dot"></span>
+    <span class="strip__item"><span>🔒</span> Certifié Halal Achahada & Hal'Origin</span>
+    <span class="strip__dot"></span>
+    <span class="strip__item"><span>📦</span> +2 500 références disponibles</span>
+    <span class="strip__dot"></span>
+    <span class="strip__item"><span>💼</span> Réservé aux professionnels</span>
+    <span class="strip__dot"></span>
+    <span class="strip__item"><span>⭐</span> 20 marques premium</span>
+    <span class="strip__dot"></span>
+    <!-- repeat -->
+    <span class="strip__item"><span>✅</span> Stocks permanents garantis</span>
+    <span class="strip__dot"></span>
+    <span class="strip__item"><span>🚚</span> Livraison 72h France entière</span>
+    <span class="strip__dot"></span>
+    <span class="strip__item"><span>🔒</span> Certifié Halal Achahada & Hal'Origin</span>
+    <span class="strip__dot"></span>
+    <span class="strip__item"><span>📦</span> +2 500 références disponibles</span>
+    <span class="strip__dot"></span>
+    <span class="strip__item"><span>💼</span> Réservé aux professionnels</span>
+    <span class="strip__dot"></span>
+    <span class="strip__item"><span>⭐</span> 20 marques premium</span>
+    <span class="strip__dot"></span>
+  </div>
+</div>
+
+<!-- ===== PARTENAIRE SECTION ===== -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2">
+      <div>
+        <span class="eyebrow">Notre identité</span>
+        <h2 class="display">Un Partenaire<br><span style="color:var(--yellow);">Stratégique</span></h2>
+        <div class="divider"></div>
+        <p style="font-size:1.05rem;margin-bottom:20px;">BIG2BIG n'est pas un simple fournisseur. Nous sommes le partenaire de confiance des grossistes et des professionnels de la restauration.</p>
+        <p>Spécialisés dans le négoce de gros volumes, nous avons bâti notre réputation sur une exigence absolue de qualité et une logistique sans faille.</p>
+        <div style="margin-top:32px;">
+          <a href="apropos.html" class="btn btn--navy">En savoir plus →</a>
+        </div>
+      </div>
+      <div>
+        <!-- Image sourced from Unsplash food wholesale -->
+        <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);">
+          <img src="https://images.unsplash.com/photo-1506617420156-8e4536971650?w=700&auto=format&fit=crop&q=80" alt="Entrepôt grossiste" style="width:100%;height:380px;object-fit:cover;" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ATOUTS ===== -->
+<section class="section section--alt">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px;">
+      <span class="eyebrow" style="justify-content:center;">Pourquoi Big2Big</span>
+      <h2 class="display">Nos Engagements<br><span style="color:var(--yellow);">Envers Vous</span></h2>
+    </div>
+    <div class="grid-4">
+      <div class="card">
+        <div class="card__icon card__icon--yellow">📦</div>
+        <h3>Stocks Permanents</h3>
+        <p>Approvisionnement constant, zéro rupture. Votre activité ne s'arrête jamais.</p>
+      </div>
+      <div class="card">
+        <div class="card__icon card__icon--yellow">🤝</div>
+        <h3>Conseil Expert</h3>
+        <p>Une équipe terrain à votre écoute pour un sourcing personnalisé et adapté à vos besoins.</p>
+      </div>
+      <div class="card">
+        <div class="card__icon card__icon--yellow">✅</div>
+        <h3>Certifié Halal</h3>
+        <p>Certifiés Achahada & Hal'Origin. Traçabilité complète, normes les plus exigeantes.</p>
+      </div>
+      <div class="card">
+        <div class="card__icon card__icon--yellow">💰</div>
+        <h3>Prix Gros Volume</h3>
+        <p>La puissance du gros à votre service. Maximisez vos marges, restez compétitif.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== UNIVERS PRODUITS ===== -->
+<section class="section">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:16px;">
+      <div>
+        <span class="eyebrow">Catalogue 2026</span>
+        <h2 class="display">Nos 12 Univers<br><span style="color:var(--yellow);">Produits</span></h2>
+      </div>
+      <a href="catalogue.html" class="btn btn--outline">Catalogue complet →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;" class="universes-grid">
+      <div class="universe-card">
+        <span class="universe-card__emoji">🍗</span>
+        <span class="universe-card__num">01</span>
+        <span class="universe-card__name">La Volaille</span>
+        <span class="universe-card__sub">Nuggets · Tenders · Escalopes</span>
+      </div>
+      <div class="universe-card">
+        <span class="universe-card__emoji">🥩</span>
+        <span class="universe-card__num">02</span>
+        <span class="universe-card__name">Le Bœuf</span>
+        <span class="universe-card__sub">Steak Haché · Merguez · Chorizo</span>
+      </div>
+      <div class="universe-card">
+        <span class="universe-card__emoji">🌯</span>
+        <span class="universe-card__num">03</span>
+        <span class="universe-card__name">Le Kebab</span>
+        <span class="universe-card__sub">Boules Poulet & Bœuf — Gurme</span>
+      </div>
+      <div class="universe-card">
+        <span class="universe-card__emoji">🍟</span>
+        <span class="universe-card__num">04</span>
+        <span class="universe-card__name">Les Frites</span>
+        <span class="universe-card__sub">Good Fries · LambWeston · McCain</span>
+      </div>
+      <div class="universe-card">
+        <span class="universe-card__emoji">🥣</span>
+        <span class="universe-card__num">05</span>
+        <span class="universe-card__name">Les Sauces</span>
+        <span class="universe-card__sub">Farm's · Heinz — 900ml & Sticks</span>
+      </div>
+      <div class="universe-card">
+        <span class="universe-card__emoji">🥖</span>
+        <span class="universe-card__num">06</span>
+        <span class="universe-card__name">Les Pains</span>
+        <span class="universe-card__sub">Burger · Hot Dog · Kebab · Brioche</span>
+      </div>
+      <div class="universe-card">
+        <span class="universe-card__emoji">🧀</span>
+        <span class="universe-card__num">07</span>
+        <span class="universe-card__name">Les Fromages</span>
+        <span class="universe-card__sub">Mozzarella · Emmental · Boursin</span>
+      </div>
+      <div class="universe-card">
+        <span class="universe-card__emoji">🍰</span>
+        <span class="universe-card__num">08</span>
+        <span class="universe-card__name">Les Desserts</span>
+        <span class="universe-card__sub">Kreamys · Haagen-Dazs · Almondy</span>
+      </div>
+      <div class="universe-card">
+        <span class="universe-card__emoji">🍕</span>
+        <span class="universe-card__num">09</span>
+        <span class="universe-card__name">La Pizza</span>
+        <span class="universe-card__sub">Caputo · Spadoni · Mutti · Paton</span>
+      </div>
+      <div class="universe-card">
+        <span class="universe-card__emoji">🫙</span>
+        <span class="universe-card__num">10</span>
+        <span class="universe-card__name">Condiments</span>
+        <span class="universe-card__sub">Accompagnements & assaisonnements</span>
+      </div>
+      <div class="universe-card">
+        <span class="universe-card__emoji">🧴</span>
+        <span class="universe-card__num">11</span>
+        <span class="universe-card__name">L'Entretien</span>
+        <span class="universe-card__sub">Produits professionnels</span>
+      </div>
+      <div class="universe-card">
+        <span class="universe-card__emoji">📦</span>
+        <span class="universe-card__num">12</span>
+        <span class="universe-card__name">L'Emballage</span>
+        <span class="universe-card__sub">Solutions packaging pro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOGISTIQUE ===== -->
+<section class="section section--navy">
+  <div class="container">
+    <div class="grid-2">
+      <div>
+        <span class="eyebrow">Logistique Pro</span>
+        <h2 class="display" style="color:var(--white);">Livraison<br><span style="color:var(--yellow);">Sous 72H</span><br>France Entière</h2>
+        <p style="font-size:1.05rem;margin:24px 0 36px;">Commandez aujourd'hui, soyez livré rapidement. Stocks constants, aucune rupture, expédition partout en France.</p>
+        <a href="contact.html" class="btn btn--primary">Passer une commande →</a>
+      </div>
+      <div>
+        <div class="grid-2" style="gap:16px;">
+          <div class="stat-card" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1);">
+            <div class="stat-card__value" style="color:var(--yellow);">72H</div>
+            <div class="stat-card__label" style="color:rgba(255,255,255,0.5);">Délai maximum</div>
+          </div>
+          <div class="stat-card" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1);">
+            <div class="stat-card__value" style="color:var(--yellow);">100%</div>
+            <div class="stat-card__label" style="color:rgba(255,255,255,0.5);">France couverte</div>
+          </div>
+          <div class="stat-card" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1);">
+            <div class="stat-card__value" style="color:var(--yellow);">0</div>
+            <div class="stat-card__label" style="color:rgba(255,255,255,0.5);">Rupture stock</div>
+          </div>
+          <div class="stat-card" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.1);">
+            <div class="stat-card__value" style="color:var(--yellow);">24/7</div>
+            <div class="stat-card__label" style="color:rgba(255,255,255,0.5);">Commande en ligne</div>
+          </div>
+        </div>
+        <div class="certif-bar" style="margin-top:16px;">
+          <div class="certif-item">
+            <div class="certif-item__icon">🔒</div>
+            <div>
+              <div class="certif-item__title">Certifié Halal</div>
+              <div class="certif-item__sub">Achahada & Hal'Origin</div>
+            </div>
+          </div>
+          <div class="certif-item">
+            <div class="certif-item__icon">📋</div>
+            <div>
+              <div class="certif-item__title">Qualité Tracée</div>
+              <div class="certif-item__sub">Source → Livraison</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARQUES ===== -->
+<section class="section section--alt">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <span class="eyebrow" style="justify-content:center;">Nos Partenaires</span>
+      <h2 class="display">20 Marques<br><span style="color:var(--yellow);">Sélection Premium</span></h2>
+    </div>
+    <div class="brands-grid">
+      <span class="brand-chip">El Famoso</span>
+      <span class="brand-chip">The Farmer</span>
+      <span class="brand-chip">Le Fameux</span>
+      <span class="brand-chip">Farm's</span>
+      <span class="brand-chip">Heinz</span>
+      <span class="brand-chip">Gurme</span>
+      <span class="brand-chip">Good Fries</span>
+      <span class="brand-chip">LambWeston</span>
+      <span class="brand-chip">McCain</span>
+      <span class="brand-chip">Pickers</span>
+      <span class="brand-chip">Jacquet</span>
+      <span class="brand-chip">Sorgel</span>
+      <span class="brand-chip">Caputo</span>
+      <span class="brand-chip">Spadoni</span>
+      <span class="brand-chip">Mutti</span>
+      <span class="brand-chip">Häagen-Dazs</span>
+      <span class="brand-chip">Almondy</span>
+      <span class="brand-chip">Valmartin</span>
+      <span class="brand-chip">Boursin</span>
+      <span class="brand-chip">Carpisa</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHOTO SECTION ===== -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="gap:28px;align-items:stretch;">
+      <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);">
+        <img src="https://images.unsplash.com/photo-1553546895-531931aa1aa8?w=700&auto=format&fit=crop&q=80" alt="Produits grossiste" style="width:100%;height:280px;object-fit:cover;" />
+      </div>
+      <div style="display:flex;flex-direction:column;gap:28px;">
+        <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);flex:1;">
+          <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=700&auto=format&fit=crop&q=80" alt="Livraison professionnelle" style="width:100%;height:120px;object-fit:cover;" />
+        </div>
+        <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);flex:1;">
+          <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=700&auto=format&fit=crop&q=80" alt="Qualité alimentaire" style="width:100%;height:120px;object-fit:cover;" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<div class="cta-section">
+  <div class="container">
+    <span class="eyebrow" style="justify-content:center;">B2B · Professionnels Uniquement</span>
+    <h2 class="display">La Puissance du Gros<br><span style="color:var(--yellow);">À Votre Service</span></h2>
+    <p>Rejoignez les professionnels qui font confiance à Big2Big. Devis rapide, livraison sous 72h, stocks garantis.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn--primary">Demander un devis →</a>
+      <a href="catalogue.html" class="btn btn--outline-white">Voir le catalogue</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">
+          <img src="/catalogue BIG2BIG/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big" onerror="this.style.display='none'">
+          <span class="footer__brand">BIG<span>2</span>BIG</span>
+        </div>
+        <p class="footer__desc">Le partenaire stratégique des grossistes et des professionnels de la restauration. +2 500 références, livraison 72h France entière.</p>
+        <div class="footer__tags">
+          <span class="footer__tag">Halal Achahada</span>
+          <span class="footer__tag">Hal'Origin</span>
+          <span class="footer__tag">Pro Only</span>
+        </div>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <a href="index.html">Accueil</a>
+        <a href="catalogue.html">Catalogue 2026</a>
+        <a href="apropos.html">À Propos</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Univers</h4>
+        <a href="catalogue.html">La Volaille</a>
+        <a href="catalogue.html">Le Bœuf</a>
+        <a href="catalogue.html">Le Kebab</a>
+        <a href="catalogue.html">Les Frites</a>
+        <a href="catalogue.html">Les Sauces</a>
+        <a href="catalogue.html">La Pizza</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon">✉</span>
+          <div class="footer__contact-text"><strong>Email</strong>contact@big2big.fr</div>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon">☎</span>
+          <div class="footer__contact-text"><strong>Téléphone</strong>+33 (0)0 00 00 00 00</div>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon">◷</span>
+          <div class="footer__contact-text"><strong>Horaires</strong>Lun–Ven · 8h–18h</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2026 Big2Big — Tous droits réservés</span>
+      <div class="footer__legal">
+        <a href="#">Mentions légales</a>
+        <a href="#">Confidentialité</a>
+        <a href="#">CGV</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => menu.classList.toggle('open'));
+</script>
+</body>
+</html>

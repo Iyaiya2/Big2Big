@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À Propos — Big2Big Grossiste Alimentaire Professionnel</title>
+  <meta name="description" content="Big2Big, le partenaire stratégique des grossistes et professionnels de la restauration." />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .partners-section {
+      background: #f8f7f4;
+      padding: 90px 0;
+    }
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    @media (max-width: 900px) { .partners-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .partners-grid { grid-template-columns: 1fr; } }
+
+    .partner-card {
+      background: #fff;
+      border: 1.5px solid #ece9e0;
+      border-radius: 20px;
+      padding: 40px 28px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      text-align: center;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .partner-card:hover {
+      border-color: #ffcc00;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.09);
+      transform: translateY(-4px);
+    }
+
+    /* Zone logo — grande, centrée */
+    .partner-logo-box {
+      width: 100%;
+      height: 150px;
+      background: #f8f6f1;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      padding: 0px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .partner-logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .partner-logo-placeholder {
+      display: none; /* caché par défaut, affiché uniquement via onerror si l'image ne charge pas */
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ccc;
+      text-transform: uppercase;
+    }
+
+    /* Séparateur */
+    .partner-divider {
+      width: 36px;
+      height: 3px;
+      background: #ffcc00;
+      border-radius: 2px;
+      margin: 0 auto 20px;
+    }
+
+    .partner-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0d1035;
+      margin: 0 0 10px;
+      letter-spacing: -0.3px;
+    }
+    .partner-tag {
+      display: inline-block;
+      background: #faf3d8;
+      color: #8a7a3a;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .partner-desc {
+      font-size: 13.5px;
+      color: #888;
+      line-height: 1.7;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo">
+          <img src="/catalogue BIG2BIG/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big Logo" onerror="this.style.display='none'">
+          <span class="nav__logo-text">BIG<span>2</span>BIG</span>
+        </a>
+        <div class="nav__links">
+          <a href="index.html">Accueil</a>
+          <a href="catalogue.html">Catalogue</a>
+          <a href="apropos.html" class="active">À Propos</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="nav__actions">
+          <a href="catalogue.html" class="btn btn--outline" style="padding:10px 18px;font-size:0.85rem;">Catalogue</a>
+          <a href="contact.html" class="btn btn--primary" style="padding:10px 18px;font-size:0.85rem;">Devis Rapide</a>
+        </div>
+        <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="index.html">Accueil</a>
+      <a href="catalogue.html">Catalogue</a>
+      <a href="apropos.html">À Propos</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="btn btn--primary">Devis Rapide →</a>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header__crumb">Accueil <span>/</span> À Propos</div>
+      <span class="eyebrow">Qui sommes-nous</span>
+      <h1 class="display">Le Grossiste<br><span style="color:var(--yellow);">De Confiance</span></h1>
+      <p>Depuis notre entrepôt, nous approvisionnons quotidiennement les grossistes et professionnels de la restauration partout en France, avec une exigence de qualité constante.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <span class="eyebrow">Notre histoire</span>
+          <h2 class="display">Né du Terrain,<br><span style="color:var(--yellow-hover);">Bâti Pour Durer</span></h2>
+          <div class="divider"></div>
+          <p style="font-size:1.05rem;margin-bottom:20px;">BIG2BIG est né d'un constat simple : les professionnels de la restauration ont besoin d'un fournisseur fiable, capable de livrer vite et de tenir ses engagements, commande après commande.</p>
+          <p style="margin-bottom:16px;">Nous avons construit notre activité autour de trois piliers : la disponibilité permanente des stocks, la rigueur du contrôle qualité et une logistique pensée pour la France entière.</p>
+          <p>Aujourd'hui, BIG2BIG accompagne des grossistes, snacks, restaurants et enseignes de restauration rapide avec un catalogue de plus de 2 500 références réparties en 12 univers produits.</p>
+        </div>
+        <div>
+          <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);">
+            <img src="/catalogue BIG2BIG/img/apropos img.jpg" alt="Entrepôt logistique Big2Big" style="width:100%;height:420px;object-fit:cover;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:56px;">
+        <span class="eyebrow" style="justify-content:center;">Ce qui nous guide</span>
+        <h2 class="display">Nos Valeurs<br><span style="color:var(--yellow-hover);">Au Quotidien</span></h2>
+      </div>
+      <div class="grid-4">
+        <div class="card">
+          <div class="card__icon card__icon--yellow">🎯</div>
+          <h3>Exigence</h3>
+          <p>Chaque référence est sélectionnée et contrôlée selon des critères stricts de qualité et de traçabilité.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon card__icon--yellow">🤝</div>
+          <h3>Proximité</h3>
+          <p>Une équipe terrain joignable et à l'écoute, pour un accompagnement adapté à chaque professionnel.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon card__icon--yellow">⏱️</div>
+          <h3>Fiabilité</h3>
+          <p>Stocks permanents et délais tenus : votre approvisionnement ne dépend jamais d'un aléa.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon card__icon--yellow">📈</div>
+          <h3>Performance</h3>
+          <p>Des prix gros volume pensés pour préserver vos marges et renforcer votre compétitivité.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:64px;">
+        <span class="eyebrow" style="justify-content:center;">Notre méthode</span>
+        <h2 class="display">De la Sélection<br><span style="color:var(--yellow-hover);">À Votre Livraison</span></h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">1</div>
+          <h4>Sourcing</h4>
+          <p>Sélection rigoureuse de marques et de références auprès de partenaires certifiés.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">2</div>
+          <h4>Contrôle qualité</h4>
+          <p>Vérification de la conformité, de la traçabilité et des certifications à réception.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">3</div>
+          <h4>Stockage</h4>
+          <p>Entreposage dans des conditions maîtrisées pour garantir des stocks permanents.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">4</div>
+          <h4>Livraison</h4>
+          <p>Expédition organisée pour une livraison sous 72h partout en France.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PARTENAIRES ══ -->
+  <section class="partners-section">
+    <div class="container">
+      <div style="text-align:center;">
+        <span class="eyebrow" style="justify-content:center;">Ils font partie de l'aventure</span>
+        <h2 class="display" style="color:#0d1035;">Nos <span style="color:var(--yellow);">Partenaires</span></h2>
+        <p style="color:#888;max-width:500px;margin:12px auto 0;font-size:0.88rem;line-height:1.7;">Des marques sélectionnées pour leur qualité et leur cohérence, disponibles dans notre catalogue grossiste.</p>
+      </div>
+
+      <div class="partners-grid">
+
+        <!-- The Farmer -->
+        <div class="partner-card">
+          <div class="partner-logo-box">
+            <img src="/catalogue BIG2BIG/img/the farme.png" alt="Logo The Farmer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="partner-logo-placeholder">The Farmer</div>
+          </div>
+          <div class="partner-divider"></div>
+          <span class="partner-tag">Volaille &amp; Viande</span>
+          <p class="partner-desc">Une gamme volaille et viande pensée pour la restauration pro : traçabilité complète, découpes calibrées et régularité de qualité, commande après commande.</p>
+        </div>
+
+        <!-- El Famoso -->
+        <div class="partner-card">
+          <div class="partner-logo-box">
+            <img src="/catalogue BIG2BIG/img/el famoso.png" alt="Logo El Famoso" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="partner-logo-placeholder">El Famoso</div>
+          </div>
+          <div class="partner-divider"></div>
+          <span class="partner-tag">Kebab &amp; Street Food</span>
+          <p class="partner-desc">La référence kebab pour le street food : lamelles et aiguillettes marinées halal, prêtes à cuire, calibrées pour tenir la cadence en service.</p>
+        </div>
+
+        <!-- Les Yaki Givrés -->
+        <div class="partner-card">
+          <div class="partner-logo-box">
+            <img src="/catalogue BIG2BIG/img/les yaki givrè.png" alt="Logo Les Yaki Givrés" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="partner-logo-placeholder">Les Yaki Givrés</div>
+          </div>
+          <div class="partner-divider"></div>
+          <span class="partner-tag">Snacking &amp; Tendance</span>
+          <p class="partner-desc">Yakis et bouchées surgelées prêtes à frire, pensées pour les concepts street food qui veulent un produit qui sort vite et qui marque en vitrine.</p>
+        </div>
+
+        <!-- Good Fries -->
+        <div class="partner-card">
+          <div class="partner-logo-box">
+            <img src="/catalogue BIG2BIG/img/good fries.png" alt="Logo Good Fries" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="partner-logo-placeholder">Good Fries</div>
+          </div>
+          <div class="partner-divider"></div>
+          <span class="partner-tag">Frites Premium</span>
+          <p class="partner-desc">Frites aux coupes variées, croustillantes à la cuisson. La référence frites pour les restaurateurs qui refusent les compromis.</p>
+        </div>
+
+        <!-- DPS Market -->
+        <div class="partner-card">
+          <div class="partner-logo-box">
+            <img src="/catalogue BIG2BIG/img/Logo-DPS-Market.png" alt="Logo DPS Market" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="partner-logo-placeholder">DPS Market</div>
+          </div>
+          <div class="partner-divider"></div>
+          <span class="partner-tag">Grossiste Alimentaire</span>
+          <p class="partner-desc">Grossiste alimentaire halal de référence, avec un réseau de dépôts partout en France. Épicerie, boissons, emballages et produits de complément pour équiper une cuisine pro au même endroit.</p>
+        </div>
+
+        <!-- Chill -->
+        <div class="partner-card">
+          <div class="partner-logo-box">
+            <img src="/catalogue BIG2BIG/img/chill.png" alt="Logo Chill" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="partner-logo-placeholder">Chill</div>
+          </div>
+          <div class="partner-divider"></div>
+          <span class="partner-tag">Boissons</span>
+          <p class="partner-desc">Gamme de boissons pensée pour la restauration rapide — formats adaptés au service, rotation rapide, pour accompagner vos menus sans rupture de stock.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ══ FIN PARTENAIRES ══ -->
+
+  <section class="section section--navy">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <span class="eyebrow">Confiance & Conformité</span>
+          <h2 class="display" style="color:var(--white);">Nos<br><span style="color:var(--yellow);">Certifications</span></h2>
+          <p style="font-size:1.05rem;margin:24px 0 36px;">La conformité alimentaire est au cœur de notre activité. Nos produits sont certifiés et notre traçabilité est vérifiable de la source jusqu'à votre point de vente.</p>
+          <a href="contact.html" class="btn btn--primary">Nous contacter →</a>
+        </div>
+        <div>
+          <div class="certif-bar" style="flex-direction:column;">
+            <div class="certif-item">
+              <div class="certif-item__icon">🔒</div>
+              <div>
+                <div class="certif-item__title">Certifié Halal Achahada</div>
+                <div class="certif-item__sub">Contrôle et certification indépendante</div>
+              </div>
+            </div>
+            <div class="certif-item">
+              <div class="certif-item__icon">🔒</div>
+              <div>
+                <div class="certif-item__title">Certifié Hal'Origin</div>
+                <div class="certif-item__sub">Traçabilité de la source à la livraison</div>
+              </div>
+            </div>
+            <div class="certif-item">
+              <div class="certif-item__icon">📋</div>
+              <div>
+                <div class="certif-item__title">Normes HACCP</div>
+                <div class="certif-item__sub">Hygiène et sécurité alimentaire respectées</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-section">
+    <div class="container">
+      <span class="eyebrow" style="justify-content:center;">B2B · Professionnels Uniquement</span>
+      <h2 class="display">Envie de Rejoindre<br><span style="color:var(--yellow);">Nos Clients Professionnels ?</span></h2>
+      <p>Contactez notre équipe pour ouvrir un compte pro et recevoir un devis adapté à votre activité.</p>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn--primary">Demander un devis →</a>
+        <a href="catalogue.html" class="btn btn--outline-white">Voir le catalogue</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__logo">
+            <img src="/catalogue BIG2BIG/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big" onerror="this.style.display='none'">
+            <span class="footer__brand">BIG<span>2</span>BIG</span>
+          </div>
+          <p class="footer__desc">Le partenaire stratégique des grossistes et des professionnels de la restauration. +2 500 références, livraison 72h France entière.</p>
+          <div class="footer__tags">
+            <span class="footer__tag">Halal Achahada</span>
+            <span class="footer__tag">Hal'Origin</span>
+            <span class="footer__tag">Pro Only</span>
+          </div>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <a href="index.html">Accueil</a>
+          <a href="catalogue.html">Catalogue 2026</a>
+          <a href="apropos.html">À Propos</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div>
+          <h4>Univers</h4>
+          <a href="catalogue.html">La Volaille</a>
+          <a href="catalogue.html">Le Bœuf</a>
+          <a href="catalogue.html">Le Kebab</a>
+          <a href="catalogue.html">Les Frites</a>
+          <a href="catalogue.html">Les Sauces</a>
+          <a href="catalogue.html">La Pizza</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">✉</span>
+            <div class="footer__contact-text"><strong>Email</strong>contact@big2big.fr</div>
+          </div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">☎</span>
+            <div class="footer__contact-text"><strong>Téléphone</strong>+33 (0)0 00 00 00 00</div>
+          </div>
+          <div class="footer__contact-item">
+            <span class="footer__contact-icon">◷</span>
+            <div class="footer__contact-text"><strong>Horaires</strong>Lun–Ven · 8h–18h</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2026 Big2Big — Tous droits réservés</span>
+        <div class="footer__legal">
+          <a href="#">Mentions légales</a>
+          <a href="#">Confidentialité</a>
+          <a href="#">CGV</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
