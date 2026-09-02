@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos Produits — Big2Big Grossiste Alimentaire Professionnel</title>
+<meta name="description" content="Catalogue Big2Big : +2 500 références réparties en 12 univers produits. Volaille, bœuf, kebab, frites, sauces, pizza et plus encore." />
+<link rel="stylesheet" href="/style.css" />
+<link rel="icon" type="image/png" href="/img/image-Photoroom - 2026-07-27T113836.190.png" />
+
+<style>
+.nav__logo img {
+  height: 65px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ===== HERO PRODUITS ===== */
+.products-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #122470 100%);
+  color: var(--white);
+  padding: 56px 0 96px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.products-hero::after {
+  content: '';
+  position: absolute; right: -10%; bottom: -30%;
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(245,196,0,0.12), transparent 65%);
+  pointer-events: none;
+}
+.products-hero .eyebrow { justify-content: center; }
+.products-hero h1 { color: var(--white); }
+.products-hero__sub {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 14px;
+}
+
+.products-search {
+  position: relative;
+  max-width: 640px;
+  margin: 32px auto 0;
+}
+.products-search input {
+  width: 100%;
+  padding: 17px 22px 17px 52px;
+  border-radius: 100px;
+  border: none;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+  outline: none;
+}
+.products-search input:focus { box-shadow: 0 0 0 3px rgba(245,196,0,0.45), var(--shadow-lg); }
+.products-search svg {
+  position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; stroke: var(--gray-500); fill: none; stroke-width: 2;
+}
+
+/* ===== BANDEAU APERCU ===== */
+.products-banner {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  background: var(--white);
+  border: 1.5px solid var(--gray-100);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 22px 28px;
+  margin-top: -56px;
+  position: relative; z-index: 2;
+}
+.products-banner__dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--yellow); flex-shrink: 0;
+  box-shadow: 0 0 0 5px rgba(245,196,0,0.18);
+}
+.products-banner__text { flex: 1; min-width: 220px; }
+.products-banner__text strong { display: block; color: var(--navy); font-size: 0.98rem; margin-bottom: 3px; }
+.products-banner__text p { font-size: 0.85rem; color: var(--gray-500); margin: 0; }
+
+/* ===== COMPTEUR ===== */
+.products-count {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+}
+.products-count span { color: var(--navy); }
+
+/* ===== FILTRES — correction du débordement =====
+   Le bandeau de filtres passe désormais à la ligne proprement au lieu de
+   déborder hors de l'écran sur mobile / tablette. */
+#productFilters.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  overflow: visible;
+  white-space: normal;
+}
+#productFilters .filter-chip {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+@media (max-width: 560px) {
+  #productFilters.filter-bar { gap: 8px; }
+  #productFilters .filter-chip { font-size: 0.82rem; padding: 8px 14px; }
+}
+
+/* ===== GRILLE PRODUITS ===== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0,1fr));
+  gap: 18px;
+}
+@media (max-width: 1080px) { .product-grid { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+@media (max-width: 860px)  { .product-grid { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; } }
+@media (max-width: 560px)  { .product-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; } }
+
+.product-card {
+  background: var(--white);
+  border: 1.5px solid var(--gray-100);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  font: inherit;
+  width: 100%;
+}
+.product-card:hover {
+  border-color: var(--yellow);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+.product-card:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+}
+.product-card__img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--off-white);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.product-card__img img { width: 100%; height: 100%; object-fit: contain; padding: 14px; }
+.product-card__placeholder {
+  display: none;
+  align-items: center; justify-content: center;
+  width: 100%; height: 100%;
+  font-size: 2.2rem;
+}
+.product-card__badge {
+  position: absolute; top: 10px; right: 10px;
+  background: var(--navy);
+  color: var(--yellow);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 4px 9px;
+  border-radius: 100px;
+  z-index: 1;
+}
+.product-card__body { padding: 14px 16px 16px; }
+.product-card__cat {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--yellow-hover);
+  margin-bottom: 5px;
+}
+.product-card__name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.product-card__meta {
+  font-size: 0.76rem;
+  color: var(--gray-500);
+}
+
+.products-empty {
+  text-align: center;
+  padding: 64px 20px;
+  color: var(--gray-500);
+  font-size: 0.95rem;
+  display: none;
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer__credit {
+  flex: 1;
+  text-align: center;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-family: inherit !important;
+}
+.footer__legal { display: flex; gap: 20px; }
+
+/* ===== POPUP PRODUIT ===== */
+.product-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.product-modal.open { display: flex; }
+.product-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 15, 40, 0.55);
+  backdrop-filter: blur(2px);
+}
+.product-modal__box {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  animation: modalIn 0.18s ease-out;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.product-modal__close {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  color: var(--navy);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.product-modal__img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--off-white);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.product-modal__img img { width: 100%; height: 100%; object-fit: contain; padding: 28px; }
+.product-modal__placeholder { font-size: 4rem; }
+.product-modal__body { padding: 22px 24px 26px; }
+.product-modal__badge {
+  display: inline-block;
+  background: var(--navy);
+  color: var(--yellow);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+}
+.product-modal__cat {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--yellow-hover);
+  margin-bottom: 6px;
+}
+.product-modal__name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.product-modal__meta {
+  font-size: 0.88rem;
+  color: var(--gray-500);
+  margin-bottom: 18px;
+}
+.product-modal__fiche {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1.5px solid var(--gray-100);
+  padding-top: 18px;
+}
+.product-modal__fiche-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--off-white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.product-modal__fiche-text { flex: 1; }
+.product-modal__fiche-text strong { display: block; font-size: 0.85rem; color: var(--navy); }
+.product-modal__fiche-text span { font-size: 0.76rem; color: var(--gray-500); }
+.product-modal__fiche-btn {
+  flex-shrink: 0;
+  background: var(--navy);
+  color: var(--yellow);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 9px 14px;
+  border-radius: 100px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.product-modal__fiche-none {
+  border-top: 1.5px solid var(--gray-100);
+  padding-top: 18px;
+  font-size: 0.82rem;
+  color: var(--gray-500);
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big Logo" onerror="this.style.display='none'">
+      </a>
+      <div class="nav__links">
+        <a href="index.html" class="active">Accueil</a>
+        <a href="produits.html">Nos Produits</a>
+        <a href="apropos.html">À Propos</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav__actions">
+        <a href="catalogue.html" class="btn btn--outline" style="padding:10px 18px;font-size:0.85rem;">Catalogue</a>
+        <a href="contact.html" class="btn btn--primary" style="padding:10px 18px;font-size:0.85rem;">Devis Rapide</a>
+      </div>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="index.html">Accueil</a>
+    <a href="produits.html">Nos Produits</a>
+    <a href="apropos.html">À Propos</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn--primary">Devis Rapide →</a>
+  </div>
+</nav>
+
+<!-- ===== HERO NOS PRODUITS ===== -->
+<section class="products-hero">
+  <div class="container">
+    <span class="eyebrow">Catalogue Grossiste</span>
+    <h1 class="display">Nos Produits.</h1>
+    <p class="products-hero__sub">+2 500 références · 12 univers produits · Livraison 72h partout en France</p>
+
+    <div class="products-search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="productSearch" placeholder="Rechercher un produit, une marque…" autocomplete="off" />
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="products-banner">
+    <div class="products-banner__dot"></div>
+    <div class="products-banner__text">
+      <strong>Vous consultez un aperçu de notre catalogue</strong>
+      <p>Ceci est un simple aperçu — notre catalogue complet (+2 500 références) est réservé à nos clients professionnels.</p>
+    </div>
+    <a href="contact.html" class="btn btn--navy">Demander un devis</a>
+  </div>
+</div>
+
+<!-- ===== GRILLE PRODUITS ===== -->
+<section class="section" style="padding-top:36px;">
+  <div class="container">
+
+    <div class="filter-bar" id="productFilters">
+      <button class="filter-chip active" data-filter="all">Tous</button>
+      <button class="filter-chip" data-filter="volaille">🍗 Volaille</button>
+      <button class="filter-chip" data-filter="boeuf">🥩 Bœuf</button>
+      <button class="filter-chip" data-filter="kebab">🌯 Kebab</button>
+      <button class="filter-chip" data-filter="frites">🍟 Frites</button>
+      <button class="filter-chip" data-filter="sauces">🥣 Sauces</button>
+      <button class="filter-chip" data-filter="pains">🥖 Pains</button>
+      <button class="filter-chip" data-filter="fromages">🧀 Fromages</button>
+      <button class="filter-chip" data-filter="desserts">🍰 Desserts</button>
+      <button class="filter-chip" data-filter="pizza">🍕 Pizza</button>
+      <button class="filter-chip" data-filter="condiments">🫙 Condiments</button>
+      <button class="filter-chip" data-filter="entretien">🧴 Entretien</button>
+      <button class="filter-chip" data-filter="emballage">📦 Emballage</button>
+    </div>
+
+    <div class="products-count"><span id="productsCount">0</span> produits affichés</div>
+
+    <!-- La grille est maintenant générée automatiquement à partir de products.json.
+         Pour ajouter, modifier ou supprimer un produit, utilisez l'espace
+         administrateur : /admin/  (voir README-INSTALLATION.txt) -->
+    <div class="product-grid" id="productGrid"></div>
+
+    <div class="products-empty" id="productsEmpty">Aucun produit ne correspond à votre recherche.</div>
+
+  </div>
+</section>
+
+<!-- ===== POPUP PRODUIT ===== -->
+<div class="product-modal" id="productModal">
+  <div class="product-modal__backdrop" data-close="1"></div>
+  <div class="product-modal__box" role="dialog" aria-modal="true" aria-labelledby="modalName">
+    <button class="product-modal__close" id="modalCloseBtn" aria-label="Fermer">✕</button>
+    <div class="product-modal__img" id="modalImgWrap">
+      <img id="modalImg" src="" alt="">
+      <div class="product-modal__placeholder" id="modalPlaceholder" style="display:none;"></div>
+    </div>
+    <div class="product-modal__body">
+      <span class="product-modal__badge" id="modalBadge"></span>
+      <span class="product-modal__cat" id="modalCat"></span>
+      <h3 class="product-modal__name" id="modalName"></h3>
+      <p class="product-modal__meta" id="modalMeta"></p>
+      <div class="product-modal__fiche" id="modalFicheYes" style="display:none;">
+        <div class="product-modal__fiche-icon">📄</div>
+        <div class="product-modal__fiche-text">
+          <strong>Fiche technique</strong>
+          <span>Document PDF pour professionnels</span>
+        </div>
+        <a href="#" id="modalFicheLink" class="product-modal__fiche-btn" download>Télécharger</a>
+      </div>
+      <p class="product-modal__fiche-none" id="modalFicheNo" style="display:none;">Fiche technique non disponible pour ce produit. Contactez-nous pour l'obtenir.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CTA ===== -->
+<div class="cta-section">
+  <div class="container">
+    <span class="eyebrow" style="justify-content:center;">B2B · Professionnels Uniquement</span>
+    <h2 class="display">Vous Ne Trouvez Pas<br><span style="color:var(--yellow);">Une Référence ?</span></h2>
+    <p>Notre catalogue complet compte plus de 2 500 références. Contactez notre équipe pour un devis personnalisé.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn--primary">Demander un devis →</a>
+      <a href="apropos.html" class="btn btn--outline-white">En savoir plus</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">
+          <img src="/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big" onerror="this.style.display='none'">
+          <span class="footer__brand">BIG<span>2</span>BIG</span>
+        </div>
+        <p class="footer__desc">Le partenaire stratégique des grossistes et des professionnels de la restauration. +2 500 références, livraison 72h France entière.</p>
+        <div class="footer__tags">
+          <span class="footer__tag">Halal Achahada</span>
+          <span class="footer__tag">Hal'Origin</span>
+          <span class="footer__tag">Pro Only</span>
+        </div>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <a href="index.html">Accueil</a>
+        <a href="produits.html">Nos Produits</a>
+        <a href="apropos.html">À Propos</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Univers</h4>
+        <a href="produits.html">La Volaille</a>
+        <a href="produits.html">Le Bœuf</a>
+        <a href="produits.html">Le Kebab</a>
+        <a href="produits.html">Les Frites</a>
+        <a href="produits.html">Les Sauces</a>
+        <a href="produits.html">La Pizza</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon">✉</span>
+          <div class="footer__contact-text"><strong>Email</strong>contact@big2big.fr</div>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon">☎</span>
+          <div class="footer__contact-text"><strong>Téléphone</strong>+33 (0)0 00 00 00 00</div>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon">◷</span>
+          <div class="footer__contact-text"><strong>Horaires</strong>Lun–Ven · 8h–18h</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2026 Big2Big — Tous droits réservés</span>
+      <span class="footer__credit">Site fait par <a href="https://iyadhadjour.fr" target="_blank" rel="noopener" style="color:rgba(255,204,0,0.45);text-decoration:none;">iyadhadjour.fr</a></span>
+      <div class="footer__legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+        <a href="cgv.html">CGV</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(function(){
+  var searchInput = document.getElementById('productSearch');
+  var filterChips = document.querySelectorAll('#productFilters .filter-chip');
+  var grid = document.getElementById('productGrid');
+  var countEl = document.getElementById('productsCount');
+  var emptyEl = document.getElementById('productsEmpty');
+  if (!grid) return;
+
+  var CAT_EMOJI = {
+    volaille: '🍗', boeuf: '🥩', kebab: '🌯', frites: '🍟', sauces: '🥣',
+    pains: '🥖', fromages: '🧀', desserts: '🍰', pizza: '🍕',
+    condiments: '🫙', entretien: '🧴', emballage: '📦'
+  };
+
+  var activeFilter = 'all';
+  var products = [];
+
+  function escapeHtml(str){
+    return String(str || '').replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  function renderGrid(){
+    grid.innerHTML = products.map(function(p, i){
+      var emoji = CAT_EMOJI[p.category] || '🛒';
+      return (
+        '<button type="button" class="product-card" data-index="' + i + '" data-category="' + escapeHtml(p.category) + '" data-name="' + escapeHtml(p.name) + '">' +
+          '<div class="product-card__img">' +
+            (p.image ? '<img src="' + escapeHtml(p.image) + '" alt="' + escapeHtml(p.name) + '" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' : '') +
+            '<div class="product-card__placeholder" style="' + (p.image ? '' : 'display:flex;') + '">' + emoji + '</div>' +
+          '</div>' +
+          (p.badge ? '<span class="product-card__badge">' + escapeHtml(p.badge) + '</span>' : '') +
+          '<div class="product-card__body">' +
+            '<span class="product-card__cat">' + escapeHtml(p.cat_label || p.category) + '</span>' +
+            '<h3 class="product-card__name">' + escapeHtml(p.name) + '</h3>' +
+            '<span class="product-card__meta">' + escapeHtml(p.meta) + '</span>' +
+          '</div>' +
+        '</button>'
+      );
+    }).join('');
+
+    grid.querySelectorAll('.product-card').forEach(function(card){
+      card.addEventListener('click', function(){
+        openModal(products[parseInt(card.dataset.index, 10)]);
+      });
+    });
+
+    applyFilters();
+  }
+
+  function applyFilters(){
+    var cards = grid.querySelectorAll('.product-card');
+    var query = (searchInput && searchInput.value || '').trim().toLowerCase();
+    var visible = 0;
+
+    cards.forEach(function(card){
+      var matchesCategory = activeFilter === 'all' || card.dataset.category === activeFilter;
+      var matchesSearch = !query || (card.dataset.name || '').toLowerCase().indexOf(query) !== -1;
+      var show = matchesCategory && matchesSearch;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    if (countEl) countEl.textContent = visible;
+    if (emptyEl) emptyEl.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  filterChips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      filterChips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      activeFilter = chip.dataset.filter;
+      applyFilters();
+    });
+  });
+
+  if (searchInput) searchInput.addEventListener('input', applyFilters);
+
+  // ===== Popup produit =====
+  var modal = document.getElementById('productModal');
+  var modalImg = document.getElementById('modalImg');
+  var modalPlaceholder = document.getElementById('modalPlaceholder');
+  var modalBadge = document.getElementById('modalBadge');
+  var modalCat = document.getElementById('modalCat');
+  var modalName = document.getElementById('modalName');
+  var modalMeta = document.getElementById('modalMeta');
+  var modalFicheYes = document.getElementById('modalFicheYes');
+  var modalFicheNo = document.getElementById('modalFicheNo');
+  var modalFicheLink = document.getElementById('modalFicheLink');
+
+  function openModal(p){
+    if (!p) return;
+    var emoji = CAT_EMOJI[p.category] || '🛒';
+    if (p.image) {
+      modalImg.src = p.image;
+      modalImg.alt = p.name;
+      modalImg.style.display = '';
+      modalPlaceholder.style.display = 'none';
+      modalImg.onerror = function(){
+        modalImg.style.display = 'none';
+        modalPlaceholder.textContent = emoji;
+        modalPlaceholder.style.display = 'flex';
+      };
+    } else {
+      modalImg.style.display = 'none';
+      modalPlaceholder.textContent = emoji;
+      modalPlaceholder.style.display = 'flex';
+    }
+    modalBadge.textContent = p.badge || '';
+    modalBadge.style.display = p.badge ? '' : 'none';
+    modalCat.textContent = p.cat_label || p.category || '';
+    modalName.textContent = p.name || '';
+    modalMeta.textContent = p.meta || '';
+
+    if (p.fiche) {
+      modalFicheYes.style.display = 'flex';
+      modalFicheNo.style.display = 'none';
+      modalFicheLink.href = p.fiche;
+      modalFicheLink.setAttribute('download', '');
+    } else {
+      modalFicheYes.style.display = 'none';
+      modalFicheNo.style.display = 'block';
+    }
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  modal.addEventListener('click', function(e){
+    if (e.target.dataset.close) closeModal();
+  });
+  document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // ===== Chargement des produits =====
+  fetch('products.json', { cache: 'no-store' })
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      products = Array.isArray(data) ? data : [];
+      renderGrid();
+    })
+    .catch(function(){
+      grid.innerHTML = '';
+      if (emptyEl) {
+        emptyEl.textContent = 'Impossible de charger le catalogue pour le moment.';
+        emptyEl.style.display = 'block';
+      }
+      if (countEl) countEl.textContent = '0';
+    });
+})();
+</script>
+</body>
+</html>
