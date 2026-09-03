@@ -87,70 +87,72 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     }
+// =========================
+// FORMULAIRE CONTACT
+// =========================
 
-    // =========================
-    // FORMULAIRE CONTACT
-    // =========================
+const contactForm = document.querySelector(".contact-form form");
 
-    const contactForm = document.querySelector(".contact-form form");
+if (contactForm) {
 
-    if (contactForm) {
+    contactForm.addEventListener("submit", (event) => {
 
-        contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-            event.preventDefault();
+        const status = document.querySelector(".form-status");
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const formData = new FormData(contactForm);
 
-            const status = document.querySelector(".form-status");
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const formData = new FormData(contactForm);
+        // Ajout dynamique de l'heure locale française (ex: 17h00)
+        const now = new Date();
+        const localTimeStr = now.toLocaleDateString("fr-FR") + " à " + now.toLocaleTimeString("fr-FR", { hour: '2-digit', minute: '2-digit' });
+        formData.append("Heure d'envoi", localTimeStr);
 
-            if (status) {
-                status.textContent = "Envoi en cours...";
-                status.style.color = "";
+        if (status) {
+            status.className = "form-status";
+            status.style.display = "block";
+            status.textContent = "Envoi en cours...";
+            status.style.color = "";
+        }
+        if (submitBtn) {
+            submitBtn.disabled = true;
+        }
+
+        fetch(contactForm.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+                "Accept": "application/json"
             }
-            if (submitBtn) {
-                submitBtn.disabled = true;
-            }
-
-            fetch(contactForm.action, {
-                method: "POST",
-                body: formData,
-                headers: {
-                    "Accept": "application/json"
-                }
-            })
-            .then((response) => {
-                if (response.ok) {
-                    if (status) {
-                        status.textContent =
-                            "Votre demande a bien été reçue. Notre équipe vous répondra rapidement.";
-                        status.style.color = "";
-                    }
-                    contactForm.reset();
-                } else {
-                    return response.json().then((data) => {
-                        const errorMsg = (data && data.errors && data.errors.length)
-                            ? data.errors.map((e) => e.message).join(", ")
-                            : "Une erreur est survenue. Merci de réessayer ou de nous contacter directement.";
-                        throw new Error(errorMsg);
-                    });
-                }
-            })
-            .catch((error) => {
+        })
+        .then((response) => {
+            if (response.ok) {
                 if (status) {
-                    status.textContent = error.message ||
-                        "Une erreur est survenue. Merci de réessayer ou de nous contacter directement.";
-                    status.style.color = "#d33";
+                    status.className = "form-status success"; // Active le style vert CSS et rend le bloc visible
+                    status.textContent = "Merci ! Votre message a bien été envoyé. Notre équipe vous répondra dans les plus brefs délais.";
                 }
-            })
-            .finally(() => {
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                }
-            });
-
+                contactForm.reset();
+            } else {
+                return response.json().then((data) => {
+                    const errorMsg = (data && data.errors && data.errors.length)
+                        ? data.errors.map((e) => e.message).join(", ")
+                        : "Une erreur est survenue. Merci de réessayer ou de nous contacter directement.";
+                    throw new Error(errorMsg);
+                });
+            }
+        })
+        .catch((error) => {
+            if (status) {
+                status.className = "form-status error"; // Active le style rouge CSS
+                status.textContent = error.message ||
+                    "Une erreur est survenue. Merci de réessayer ou de nous contacter directement.";
+            }
+        })
+        .finally(() => {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+            }
         });
 
-    }
-
-});
+    });
+}});

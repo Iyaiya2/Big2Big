@@ -9,40 +9,57 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="/cart.css" />
   <style>
-  .nav__logo img {
-  height: 65px;
-  width: auto;
-  max-width: 120px;
-  object-fit: contain;
-  display: block;
-  flex-shrink: 0;
-}
-  
-  
-  .footer__bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.footer__credit {
-  flex: 1;
-  text-align: center;
-  font-size: 0.85rem !important;
-  font-weight: 400 !important;
-  color: rgba(255, 255, 255, 0.5) !important;
-  font-family: inherit !important;
-}
-
-.footer__legal {
-  display: flex;
-  gap: 20px;
-}</style>
+    .nav__logo img {
+      height: 65px;
+      width: auto;
+      max-width: 120px;
+      object-fit: contain;
+      display: block;
+      flex-shrink: 0;
+    }
+    .footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer__credit {
+      flex: 1;
+      text-align: center;
+      font-size: 0.85rem !important;
+      font-weight: 400 !important;
+      color: rgba(255, 255, 255, 0.5) !important;
+      font-family: inherit !important;
+    }
+    .footer__legal {
+      display: flex;
+      gap: 20px;
+    }
+    .form-status {
+      margin-top: 15px;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .form-status.success {
+      display: block;
+      background-color: rgba(46, 125, 50, 0.15);
+      color: #2e7d32;
+      border: 1px solid #2e7d32;
+    }
+    .form-status.error {
+      display: block;
+      background-color: rgba(211, 47, 47, 0.15);
+      color: #d32f2f;
+      border: 1px solid #d32f2f;
+    }
+  </style>
 </head>
 <body>
-  <!-- ===== NAV ===== -->
+
+<!-- ===== NAV ===== -->
 <nav class="nav">
   <div class="container">
     <div class="nav__inner">
@@ -50,10 +67,10 @@
         <img src="img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big Logo" onerror="this.style.display='none'">
       </a>
       <div class="nav__links">
-        <a href="index.html" class="active">Accueil</a>
+        <a href="index.html">Accueil</a>
         <a href="produits.html">Nos Produits</a>
         <a href="apropos.html">À Propos</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="active">Contact</a>
       </div>
       <div class="nav__actions">
         <a href="catalogue.html" class="btn btn--outline" style="padding:10px 18px;font-size:0.85rem;">Catalogue</a>
@@ -73,142 +90,143 @@
   </div>
 </nav>
 
-  <section class="page-header">
-    <div class="container">
-      <div class="page-header__crumb">Accueil <span>/</span> Contact</div>
-      <span class="eyebrow">Discutons votre projet</span>
-      <h1 class="display">Contactez-nous</h1>
-      <p>Un besoin de devis, de catalogue ou d’assistance ? Notre équipe vous répond rapidement pour ouvrir votre compte pro.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="grid-2" style="align-items:stretch;">
-        <div class="card contact-form">
-          <span class="eyebrow">Demande de contact</span>
-          <h2 class="display" style="margin-bottom:20px;">Dites-nous<br><span style="color:var(--yellow-hover);">Votre besoin</span></h2>
-          <form action="https://formspree.io/f/xoeqwqzp" method="POST">            
-            <div class="form-group">
-              <label for="nom">Nom</label>
-              <input type="text" id="nom" name="nom" placeholder="Jean Dupont" required />
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="jean@exemple.com" required />
-              </div>
-              <div class="form-group">
-                <label for="societe">Société</label>
-                <input type="text" id="societe" name="societe" placeholder="Nom de votre structure" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Votre demande, votre volume ou votre secteur d’activité…" required></textarea>
-            </div>
-            <button type="submit" class="btn btn--primary" style="width:100%; justify-content:center;">Envoyer ma demande</button>
-            <div class="form-status" aria-live="polite"></div>
-          </form>
-        </div>
-
-        <div class="contact-info-card">
-          <h3>Coordonnées</h3>
-          <p>Pour un accompagnement pro, un audit de vos besoins ou un devis personnalisé, notre équipe reste à votre disposition.</p>
-
-          <div class="contact-line">
-            <div class="contact-line__icon">📍</div>
-            <div>
-              <div class="contact-line__label">Adresse</div>
-              <div class="contact-line__value">France • Livraison partout en France</div>
-            </div>
-          </div>
-          <div class="contact-line">
-            <div class="contact-line__icon">✉</div>
-            <div>
-              <div class="contact-line__label">Email</div>
-              <div class="contact-line__value">contact@big2big.fr</div>
-            </div>
-          </div>
-          <div class="contact-line">
-            <div class="contact-line__icon">☎</div>
-            <div>
-              <div class="contact-line__label">Téléphone</div>
-              <div class="contact-line__value">+33 00 00 00 00</div>
-            </div>
-          </div>
-          <div class="contact-line">
-            <div class="contact-line__icon">🕘</div>
-            <div>
-              <div class="contact-line__label">Horaires</div>
-              <div class="contact-line__value">Lun-Ven · 9h-18h</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <div class="footer__logo">
-            <img src="/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big" onerror="this.style.display='none'">
-            <span class="footer__brand">BIG<span>2</span>BIG</span>
-          </div>
-          <p class="footer__desc">Le partenaire stratégique des grossistes et des professionnels de la restauration. +2 500 références, livraison 72h France entière.</p>
-          <div class="footer__tags">
-            <span class="footer__tag">Halal Achahada</span>
-            <span class="footer__tag">Hal'Origin</span>
-            <span class="footer__tag">Pro Only</span>
-          </div>
-        </div>
-        <div>
-          <h4>Navigation</h4>
-          <a href="accueil.html">Accueil</a>
-          <a href="catalogue.html">Catalogue 2026</a>
-          <a href="apropos.html">À Propos</a>
-          <a href="contact.html">Contact</a>
-        </div>
-        <div>
-          <h4>Univers</h4>
-          <a href="catalogue.html">La Volaille</a>
-          <a href="catalogue.html">Le Boeuf</a>
-          <a href="catalogue.html">Le Kebab</a>
-          <a href="catalogue.html">Les Frites</a>
-          <a href="catalogue.html">Les Sauces</a>
-          <a href="catalogue.html">La Pizza</a>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <div class="footer__contact-item">
-            <span class="footer__contact-icon">✉</span>
-            <div class="footer__contact-text"><strong>Email</strong>contact@big2big.fr</div>
-          </div>
-          <div class="footer__contact-item">
-            <span class="footer__contact-icon">☎</span>
-            <div class="footer__contact-text"><strong>Téléphone</strong>+33 (0)0 00 00 00 00</div>
-          </div>
-          <div class="footer__contact-item">
-            <span class="footer__contact-icon">◷</span>
-            <div class="footer__contact-text"><strong>Horaires</strong>Lun-Ven · 9h-18h</div>
-          </div>
-        </div>
-      </div>
-      <div class="footer__bottom">
-  <span class="footer__copy">© 2026 Big2Big — Tous droits réservés</span>
-  <span class="footer__credit">Site fait par <a href="https://iyadhadjour.fr" target="_blank" rel="noopener" style="color:rgba(255,204,0,0.45);text-decoration:none;">iyadhadjour.fr</a></span>
-  <div class="footer__legal">
-    <a href="mentions-legales.html">Mentions légales</a>
-    <a href="confidentialite.html">Confidentialité</a>
-    <a href="cgv.html">CGV</a>
+<section class="page-header">
+  <div class="container">
+    <div class="page-header__crumb">Accueil <span>/</span> Contact</div>
+    <span class="eyebrow">Discutons votre projet</span>
+    <h1 class="display">Contactez-nous</h1>
+    <p>Un besoin de devis, de catalogue ou d’assistance ? Notre équipe vous répond rapidement pour ouvrir votre compte pro.</p>
   </div>
-</div>
-    </div>
-  </footer>
+</section>
 
-  <script src="script.js"></script>
-  <script src="/cart.js"></script>
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="align-items:stretch;">
+      <div class="card contact-form">
+        <span class="eyebrow">Demande de contact</span>
+        <h2 class="display" style="margin-bottom:20px;">Dites-nous<br><span style="color:var(--yellow-hover);">Votre besoin</span></h2>
+        
+        <form id="contact-form" action="https://formspree.io/f/xoeqwqzp" method="POST">            
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Jean Dupont" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="jean@exemple.com" required />
+            </div>
+            <div class="form-group">
+              <label for="societe">Société</label>
+              <input type="text" id="societe" name="societe" placeholder="Nom de votre structure" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Votre demande, votre volume ou votre secteur d’activité…" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary" style="width:100%; justify-content:center;">Envoyer ma demande</button>
+          <div class="form-status" id="form-status" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <div class="contact-info-card">
+        <h3>Coordonnées</h3>
+        <p>Pour un accompagnement pro, un audit de vos besoins ou un devis personnalisé, notre équipe reste à votre disposition.</p>
+
+        <div class="contact-line">
+          <div class="contact-line__icon">📍</div>
+          <div>
+            <div class="contact-line__label">Adresse</div>
+            <div class="contact-line__value">France • Livraison partout en France</div>
+          </div>
+        </div>
+        <div class="contact-line">
+          <div class="contact-line__icon">✉</div>
+          <div>
+            <div class="contact-line__label">Email</div>
+            <div class="contact-line__value">contact@big2big.fr</div>
+          </div>
+        </div>
+        <div class="contact-line">
+          <div class="contact-line__icon">☎</div>
+          <div>
+            <div class="contact-line__label">Téléphone</div>
+            <div class="contact-line__value">+33 00 00 00 00</div>
+          </div>
+        </div>
+        <div class="contact-line">
+          <div class="contact-line__icon">🕘</div>
+          <div>
+            <div class="contact-line__label">Horaires</div>
+            <div class="contact-line__value">Lun-Ven · 9h-18h</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">
+          <img src="/img/image-Photoroom - 2026-07-27T113836.190.png" alt="Big2Big" onerror="this.style.display='none'">
+          <span class="footer__brand">BIG<span>2</span>BIG</span>
+        </div>
+        <p class="footer__desc">Le partenaire stratégique des grossistes et des professionnels de la restauration. +2 500 références, livraison 72h France entière.</p>
+        <div class="footer__tags">
+          <span class="footer__tag">Halal Achahada</span>
+          <span class="footer__tag">Hal'Origin</span>
+          <span class="footer__tag">Pro Only</span>
+        </div>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <a href="index.html">Accueil</a>
+        <a href="catalogue.html">Catalogue 2026</a>
+        <a href="apropos.html">À Propos</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Univers</h4>
+        <a href="catalogue.html">La Volaille</a>
+        <a href="catalogue.html">Le Boeuf</a>
+        <a href="catalogue.html">Le Kebab</a>
+        <a href="catalogue.html">Les Frites</a>
+        <a href="catalogue.html">Les Sauces</a>
+        <a href="catalogue.html">La Pizza</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon">✉</span>
+          <div class="footer__contact-text"><strong>Email</strong>contact@big2big.fr</div>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon">☎</span>
+          <div class="footer__contact-text"><strong>Téléphone</strong>+33 (0)0 00 00 00 00</div>
+        </div>
+        <div class="footer__contact-item">
+          <span class="footer__contact-icon">◷</span>
+          <div class="footer__contact-text"><strong>Horaires</strong>Lun-Ven · 9h-18h</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2026 Big2Big — Tous droits réservés</span>
+      <span class="footer__credit">Site fait par <a href="https://iyadhadjour.fr" target="_blank" rel="noopener" style="color:rgba(255,204,0,0.45);text-decoration:none;">iyadhadjour.fr</a></span>
+      <div class="footer__legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+        <a href="cgv.html">CGV</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="/cart.js"></script>
 </body>
 </html>
