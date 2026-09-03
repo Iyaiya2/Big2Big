@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# Rediriger la racine "/" vers "/accueil"
+RewriteRule ^$ /accueil [R=301,L]
+
+# Rediriger /index ou /index.html vers /accueil
+RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
+RewriteRule ^ /accueil [R=301,L]
+
+# Rediriger .html vers l'URL sans .html (pour les autres pages)
+RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Servir index.html quand on demande /accueil (en interne)
+RewriteRule ^accueil/?$ index.html [L]
+
+# Servir le fichier .html en interne pour les autres pages
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [L]
