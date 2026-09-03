@@ -7,11 +7,17 @@
 define('ADMIN_ORDER_EMAIL', 'contact@big2big.fr');
 
 // Adresse "expéditeur" utilisée dans les emails envoyés par le site
-// (idéalement une adresse sur le même nom de domaine que le site,
-// ex: noreply@big2big.fr, pour éviter que l'email parte en spam)
-define('SITE_FROM_EMAIL', 'noreply@big2big.fr');
+// (même boîte que ADMIN_ORDER_EMAIL car tu n'as accès qu'à celle-ci)
+define('SITE_FROM_EMAIL', 'contact@big2big.fr');
 
 define('SITE_NAME', 'Big2Big');
+
+// ---- Identifiants SMTP (boîte contact@big2big.fr) ----
+define('SMTP_HOST', 'smtp.hostinger.com');
+define('SMTP_PORT', 465);         // 465 = SSL
+define('SMTP_SECURE', 'ssl');
+define('SMTP_USER', 'contact@big2big.fr');
+define('SMTP_PASS', 'Contact92*!');
 
 // Emplacement du fichier de base de données (comptes clients)
 define('DB_PATH', __DIR__ . '/data/users.db');
@@ -31,7 +37,6 @@ session_start();
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 
-// Autorise les appels fetch() en JSON depuis les pages du site
 function json_input(): array {
     $raw = file_get_contents('php://input');
     $data = json_decode($raw, true);

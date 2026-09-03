@@ -1,5 +1,11 @@
 <?php
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/PHPMailer/PHPMailer.php';
+require_once __DIR__ . '/PHPMailer/SMTP.php';
+require_once __DIR__ . '/PHPMailer/Exception.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respond(['error' => 'Méthode non autorisée.'], 405);
@@ -20,7 +26,7 @@ $name  = $_SESSION['user_name'];
 $phone = $_SESSION['user_phone'];
 $email = $_SESSION['user_email'];
 
-// ---- Construction de l'email ----
+// ---- Construction du contenu de l'email ----
 $lines   = [];
 $lines[] = 'Nouvelle demande de commande — ' . SITE_NAME;
 $lines[] = '';
@@ -48,18 +54,43 @@ if ($itemCount === 0) {
 }
 
 $lines[] = str_repeat('-', 40);
-$body = implode("\n", $lines);
+$bodyText = implode("\n", $lines);
+$bodyHtml = '<pre style="font-family: Arial, sans-serif; font-size: 14px;">'
+          . htmlspecialchars($bodyText, ENT_QUOTES, 'UTF-8')
+          . '</pre>';
 
 $subject = 'Nouvelle commande de ' . $name . ' — ' . SITE_NAME;
 
-$headers   = [];
-$headers[] = 'From: ' . SITE_NAME . ' <' . SITE_FROM_EMAIL . '>';
-$headers[] = 'Reply-To: ' . $email;
-$headers[] = 'Content-Type: text/plain; charset=UTF-8';
+// ---- Envoi via PHPMailer / SMTP authentifié ----
+$mail = new PHPMailer(true);
 
-$sent = @mail(ADMIN_ORDER_EMAIL, $subject, $body, implode("\r\n", $headers));
+try {
+    // Config serveur SMTP
+    $mail->isSMTP();
+    $mail->Host       = SMTP_HOST;
+    $mail->SMTPAuth   = true;
+    $mail->Username   = SMTP_USER;
+    $mail->Password   = SMTP_PASS;
+    $mail->SMTPSecure = SMTP_SECURE === 'tls' ? PHPMailer::ENCRYPTION_STARTTLS : PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port       = SMTP_PORT;
+    $mail->CharSet    = 'UTF-8';
 
-if (!$sent) {
+    // Expéditeur : DOIT correspondre exactement au compte SMTP pour aligner SPF/DKIM/DMARC
+    $mail->setFrom(SITE_FROM_EMAIL, SITE_NAME);
+    $mail->addAddress(ADMIN_ORDER_EMAIL);
+
+    // Reply-To pointant vers le client, pratique pour répondre directement
+    if ($email) {
+        $mail->addReplyTo($email, $name);
+    }
+
+    $mail->Subject = $subject;
+    $mail->isHTML(true);
+    $mail->Body    = $bodyHtml;
+    $mail->AltBody = $bodyText; // version texte brut, recommandée contre le spam
+
+    $mail->send();
+} catch (Exception $e) {
     respond(['error' => "La commande n'a pas pu être envoyée par email. Merci de réessayer ou de nous contacter directement."], 500);
 }
 
