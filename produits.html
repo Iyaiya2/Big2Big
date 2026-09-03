@@ -6,6 +6,7 @@
 <title>Nos Produits — Big2Big Grossiste Alimentaire Professionnel</title>
 <meta name="description" content="Catalogue Big2Big : +2 500 références réparties en 12 univers produits. Volaille, bœuf, kebab, frites, sauces, pizza et plus encore." />
 <link rel="stylesheet" href="/style.css" />
+<link rel="stylesheet" href="/cart.css" />
 <link rel="icon" type="image/png" href="/img/image-Photoroom - 2026-07-27T113836.190.png" />
 
 <style>
@@ -453,6 +454,18 @@
       <span class="product-modal__cat" id="modalCat"></span>
       <h3 class="product-modal__name" id="modalName"></h3>
       <p class="product-modal__meta" id="modalMeta"></p>
+
+      <!-- Sélecteur de quantité + ajout au panier -->
+      <div class="b2b-modal-add">
+        <div class="b2b-modal-add__qty">
+          <button type="button" id="modalQtyDec" aria-label="Diminuer la quantité">−</button>
+          <input type="number" id="modalQtyInput" value="1" min="1">
+          <button type="button" id="modalQtyInc" aria-label="Augmenter la quantité">+</button>
+        </div>
+        <button type="button" id="modalAddToCartBtn" class="btn btn--primary b2b-modal-add__btn">Ajouter au panier</button>
+      </div>
+      <div class="b2b-modal-add__confirm" id="modalAddConfirm">✅ Ajouté au panier</div>
+
       <div class="product-modal__fiche" id="modalFicheYes" style="display:none;">
         <div class="product-modal__fiche-icon">📄</div>
         <div class="product-modal__fiche-text">
@@ -632,8 +645,42 @@
   var modalFicheNo = document.getElementById('modalFicheNo');
   var modalFicheLink = document.getElementById('modalFicheLink');
 
+  // ===== Quantité + Ajouter au panier =====
+  var modalQtyInput = document.getElementById('modalQtyInput');
+  var modalQtyDec = document.getElementById('modalQtyDec');
+  var modalQtyInc = document.getElementById('modalQtyInc');
+  var modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
+  var modalAddConfirm = document.getElementById('modalAddConfirm');
+  var currentModalProduct = null;
+
+  function clampQty(){
+    var v = parseInt(modalQtyInput.value, 10);
+    if (!v || v < 1) v = 1;
+    modalQtyInput.value = v;
+    return v;
+  }
+  if (modalQtyDec) modalQtyDec.addEventListener('click', function(){
+    modalQtyInput.value = Math.max(1, clampQty() - 1);
+  });
+  if (modalQtyInc) modalQtyInc.addEventListener('click', function(){
+    modalQtyInput.value = clampQty() + 1;
+  });
+  if (modalQtyInput) modalQtyInput.addEventListener('change', clampQty);
+
+  if (modalAddToCartBtn) modalAddToCartBtn.addEventListener('click', function(){
+    if (!currentModalProduct || !window.B2BCart) return;
+    var qty = clampQty();
+    window.B2BCart.addToCart(currentModalProduct, qty);
+    modalAddConfirm.style.display = 'block';
+    setTimeout(function(){ modalAddConfirm.style.display = 'none'; }, 1800);
+  });
+
   function openModal(p){
     if (!p) return;
+    currentModalProduct = p;
+    if (modalQtyInput) modalQtyInput.value = 1;
+    if (modalAddConfirm) modalAddConfirm.style.display = 'none';
+
     var emoji = CAT_EMOJI[p.category] || '🛒';
     if (p.image) {
       modalImg.src = p.image;
@@ -700,5 +747,6 @@
     });
 })();
 </script>
+<script src="/cart.js"></script>
 </body>
 </html>
