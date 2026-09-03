@@ -101,13 +101,53 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
 
             const status = document.querySelector(".form-status");
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const formData = new FormData(contactForm);
 
             if (status) {
-                status.textContent =
-                    "Votre demande a bien été reçue. Notre équipe vous répondra rapidement.";
+                status.textContent = "Envoi en cours...";
+                status.style.color = "";
+            }
+            if (submitBtn) {
+                submitBtn.disabled = true;
             }
 
-            contactForm.reset();
+            fetch(contactForm.action, {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "Accept": "application/json"
+                }
+            })
+            .then((response) => {
+                if (response.ok) {
+                    if (status) {
+                        status.textContent =
+                            "Votre demande a bien été reçue. Notre équipe vous répondra rapidement.";
+                        status.style.color = "";
+                    }
+                    contactForm.reset();
+                } else {
+                    return response.json().then((data) => {
+                        const errorMsg = (data && data.errors && data.errors.length)
+                            ? data.errors.map((e) => e.message).join(", ")
+                            : "Une erreur est survenue. Merci de réessayer ou de nous contacter directement.";
+                        throw new Error(errorMsg);
+                    });
+                }
+            })
+            .catch((error) => {
+                if (status) {
+                    status.textContent = error.message ||
+                        "Une erreur est survenue. Merci de réessayer ou de nous contacter directement.";
+                    status.style.color = "#d33";
+                }
+            })
+            .finally(() => {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                }
+            });
 
         });
 
