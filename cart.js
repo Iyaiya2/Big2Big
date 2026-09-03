@@ -87,7 +87,7 @@
   var els = {};
 
   function injectMarkup() {
-    // Bouton panier dans la nav, sur chaque page qui a .nav__actions
+    // Bouton panier dans la nav desktop, sur chaque page qui a .nav__actions
     var navActions = document.querySelectorAll('.nav__actions');
     navActions.forEach(function (nav) {
       if (nav.querySelector('.b2b-cart-btn')) return;
@@ -95,9 +95,36 @@
       btn.type = 'button';
       btn.className = 'b2b-cart-btn';
       btn.setAttribute('aria-label', 'Panier');
-      btn.innerHTML = '🛒<span class="b2b-cart-count" id="b2bCartCount" style="display:none;">0</span>';
+      btn.innerHTML = '🛒<span class="b2b-cart-count" style="display:none;">0</span>';
       nav.insertBefore(btn, nav.firstChild);
       btn.addEventListener('click', openCart);
+    });
+
+    // Bouton panier dans le menu burger mobile, à côté de "Devis Rapide"
+    var mobileMenus = document.querySelectorAll('.nav__mobile');
+    mobileMenus.forEach(function (menu) {
+      if (menu.querySelector('.b2b-cart-btn')) return;
+      var ctaLink = menu.querySelector('a.btn--primary');
+      if (!ctaLink) return;
+
+      var row = document.createElement('div');
+      row.className = 'nav__mobile-actions';
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'b2b-cart-btn';
+      btn.setAttribute('aria-label', 'Panier');
+      btn.innerHTML = '🛒<span class="b2b-cart-count" style="display:none;">0</span>';
+
+      ctaLink.parentNode.insertBefore(row, ctaLink);
+      row.appendChild(btn);
+      row.appendChild(ctaLink);
+
+      btn.addEventListener('click', function () {
+        menu.classList.remove('open');
+        document.body.style.overflow = '';
+        openCart();
+      });
     });
 
     // Tiroir panier, une seule instance ajoutée au body

@@ -42,6 +42,21 @@
   line-height: 1;
 }
 
+/* ===== Bouton panier dans le menu burger mobile, à côté de "Devis Rapide" ===== */
+.nav__mobile-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+.nav__mobile-actions .b2b-cart-btn {
+  margin-right: 0; /* pas besoin de la marge prévue pour la version desktop */
+}
+.nav__mobile-actions .btn--primary {
+  flex: 1;
+  margin-top: 0; /* annule le margin-top que .nav__mobile .btn applique normalement */
+}
+
 /* Overlay + backdrop */
 .b2b-cart-overlay {
   position: fixed;
