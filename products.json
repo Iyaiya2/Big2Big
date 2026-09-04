@@ -1,0 +1,122 @@
+[
+    {
+        "id": "farms-sauce-blanche",
+        "category": "sauces",
+        "cat_label": "Sauces & Condiments",
+        "badge": "Farm's",
+        "name": "Sauce Blanche Croustry",
+        "meta": "Seau 4,75L",
+        "image": "img/produits/farms-sauce-blanche.png",
+        "fiche": ""
+    },
+    {
+        "id": "good-fries-8-8",
+        "category": "frites",
+        "cat_label": "Frites & Apéritifs",
+        "badge": "Good Fries",
+        "name": "Frites Good Fries 8/8",
+        "meta": "Par 10kg",
+        "image": "img/produits/good-fries-8-8.png",
+        "fiche": ""
+    },
+    {
+        "id": "el-famoso-lamelles",
+        "category": "kebab",
+        "cat_label": "Kebab",
+        "badge": "El Famoso",
+        "name": "Lamelles Kebab",
+        "meta": "800g · Halal",
+        "image": "img/produits/el-famoso-lamelles.png",
+        "fiche": ""
+    },
+    {
+        "id": "farmer-escalope-viennoise",
+        "category": "volaille",
+        "cat_label": "Volaille",
+        "badge": "The Farmer",
+        "name": "Escalope Viennoise Poulet",
+        "meta": "800g · Halal",
+        "image": "img/produits/farmer-escalope-viennoise.png",
+        "fiche": ""
+    },
+    {
+        "id": "viande-hachee",
+        "category": "boeuf",
+        "cat_label": "Bœuf",
+        "badge": "Hal'Origin",
+        "name": "Viande Hachée 15% MG",
+        "meta": "Sachet · Halal",
+        "image": "img/produits/viande-hachee.png",
+        "fiche": ""
+    },
+    {
+        "id": "jacquet-pain-burger",
+        "category": "pains",
+        "cat_label": "Pains",
+        "badge": "Jacquet",
+        "name": "Pain Burger Brioché",
+        "meta": "Carton x48",
+        "image": "img/produits/jacquet-pain-burger.png",
+        "fiche": ""
+    },
+    {
+        "id": "boursin-ail-fines-herbes",
+        "category": "fromages",
+        "cat_label": "Fromages",
+        "badge": "Boursin",
+        "name": "Boursin Ail & Fines Herbes",
+        "meta": "150g",
+        "image": "img/produits/boursin-ail-fines-herbes.png",
+        "fiche": ""
+    },
+    {
+        "id": "haagen-dazs-vanille",
+        "category": "desserts",
+        "cat_label": "Desserts",
+        "badge": "Häagen-Dazs",
+        "name": "Häagen-Dazs Vanille",
+        "meta": "460ml",
+        "image": "img/produits/haagen-dazs-vanille.png",
+        "fiche": ""
+    },
+    {
+        "id": "caputo-farine-pizzeria",
+        "category": "pizza",
+        "cat_label": "Pizza",
+        "badge": "Caputo",
+        "name": "Farine Pizzeria",
+        "meta": "Sac 25kg",
+        "image": "img/produits/caputo-farine-pizzeria.png",
+        "fiche": ""
+    },
+    {
+        "id": "heinz-ketchup-sticks",
+        "category": "condiments",
+        "cat_label": "Condiments",
+        "badge": "Heinz",
+        "name": "Ketchup Sticks",
+        "meta": "Boîte x200",
+        "image": "img/produits/heinz-ketchup-sticks.png",
+        "fiche": ""
+    },
+    {
+        "id": "nettoyant-multi-surfaces",
+        "category": "entretien",
+        "cat_label": "Entretien",
+        "badge": "Big2Big Pro",
+        "name": "Nettoyant Multi-Surfaces",
+        "meta": "Bidon 5L",
+        "image": "img/produits/nettoyant-multi-surfaces.png",
+        "fiche": ""
+    },
+    {
+        "id": "boites-kebab-kraft",
+        "category": "emballage",
+        "cat_label": "Emballage",
+        "badge": "Big2Big Pro",
+        "name": "Boîtes Kebab Kraft",
+        "meta": "Carton x500",
+        "image": "img/produits/boites-kebab-kraft.png",
+        "fiche": ""
+    }
+]
